@@ -1,4 +1,4 @@
-import java.util.Stack;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -12,18 +12,26 @@ public class Main {
     }
 
     public static boolean checkForPalindrome(String text) {
-
+        Stack<String> stcCopy = new Stack<>();
         Stack<String> stc = new Stack<>();
+        Stack<String> stc2 = new Stack<>();
 
+
+        text = text.replaceAll("[ '.,?!_-]","").trim().toLowerCase();
         String[] chars = text.split("");
 
-        for (String ch: chars)
-        {
-            stc.addElement(ch);
+        stc.addAll(Arrays.asList(chars));
+        stcCopy.addAll(Arrays.asList(chars));
+
+
+        while (!stc.isEmpty()) {
+            stc2.add(stc.pop());
         }
 
-        System.out.println("Kontrol1: "+ stc);
+        System.out.println("Kontrol 1: "+ stcCopy);
+        System.out.println("Kontrol 2: "+ stc2);
 
-        return false;
+        return stcCopy.equals(stc2);
+
     }
 }
